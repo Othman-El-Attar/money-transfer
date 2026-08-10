@@ -1,11 +1,9 @@
 package com.aman.intern.moneyTransfer.controllers;
 
 import com.aman.intern.moneyTransfer.models.DTO.ProfileUpdateRequestDTO;
-import com.aman.intern.moneyTransfer.models.DTO.RegisterRequestDTO;
 import com.aman.intern.moneyTransfer.models.DTO.UserResponseDTO;
 import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.services.UserService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -4,6 +4,10 @@ import com.aman.intern.moneyTransfer.models.entities.User;
 
 import java.time.LocalDate;
 
+import lombok.*;
+
+@Getter
+@Setter
 public class UserResponseDTO {
 
 

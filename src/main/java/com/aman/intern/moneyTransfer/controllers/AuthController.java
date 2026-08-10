@@ -7,7 +7,6 @@ import com.aman.intern.moneyTransfer.models.DTO.UserResponseDTO;
 import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.services.AuthService;
 import com.aman.intern.moneyTransfer.services.JwtService;
-import com.aman.intern.moneyTransfer.services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

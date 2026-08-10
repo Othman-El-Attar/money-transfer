@@ -1,6 +1,5 @@
 package com.aman.intern.moneyTransfer.services;
 
-import com.aman.intern.moneyTransfer.models.DTO.ProfileUpdateRequestDTO;
 import com.aman.intern.moneyTransfer.models.DTO.RegisterRequestDTO;
 import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.reposatories.UserRepository;
@@ -8,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
 
 @Service
 public class AuthService {

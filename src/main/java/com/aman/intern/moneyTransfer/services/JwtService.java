@@ -7,13 +7,11 @@ import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKey;
-import javax.net.ssl.KeyManager;
 import java.util.Date;
 
 @Service
 public class JwtService {
     private final SecretKey secretKey;
-    private final long expirationTime = 30*60*1000;
 
     public JwtService() {
         this.secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
@@ -22,6 +20,7 @@ public class JwtService {
     public String generateToken(String email){
 
         Date now = new Date();
+        long expirationTime = 30 * 60 * 1000;
         Date expirationDate = new Date(now.getTime() + expirationTime);
         return Jwts.builder()
                 .subject(email)
