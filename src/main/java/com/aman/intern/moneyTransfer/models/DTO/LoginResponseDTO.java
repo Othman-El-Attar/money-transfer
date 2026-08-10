@@ -1,0 +1,12 @@
+package com.aman.intern.moneyTransfer.models.DTO;
+
+public class LoginResponseDTO {
+    private String token ;
+
+    public LoginResponseDTO(String token) {
+        this.token = token;
+    }
+    public String getToken() {
+        return token;
+    }
+}
