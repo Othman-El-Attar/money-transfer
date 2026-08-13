@@ -1,5 +1,6 @@
 package com.aman.intern.moneyTransfer.reposatories;
 
+import com.aman.intern.moneyTransfer.models.DTO.FavoriteRecipientDTO;
 import com.aman.intern.moneyTransfer.models.entities.FavoriteRecipient;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

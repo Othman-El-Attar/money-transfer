@@ -34,6 +34,9 @@ public class UserService {
                 .orElseThrow(() ->
                         new IllegalArgumentException("User not found"));
 
+        if(USERREPOSITORY.findByEmail(request.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("User already exists");
+        }
 
 
         if (request.getPassword() != null) {
@@ -48,6 +51,9 @@ public class UserService {
                     PASSWORDENCODER.encode(request.getPassword())
             );
         }
+        if(request.getEmail() != null) user.setEmail(request.getEmail());
+        if(request.getCountry() != null) user.setCountry(request.getCountry());
+        if(request.getDob() != null) user.setDob(request.getDob());
 
         return USERREPOSITORY.save(user);
     }

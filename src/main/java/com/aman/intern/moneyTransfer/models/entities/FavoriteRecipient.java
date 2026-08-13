@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Timestamp;
 
@@ -20,9 +21,16 @@ public class FavoriteRecipient {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+
     private long id;
+    @Column(name = "user_id")
     private long userId;
+    @Column(name = "recipient_account_id")
     private long recipientAccountId;
+    @Column(name = "nick_name")
     private String nickName;
+    @Column(name = "add_at")
+    @CreationTimestamp
     private Timestamp addedAt;
 }

@@ -1,22 +1,19 @@
 package com.aman.intern.moneyTransfer.models.DTO;
 
+import com.aman.intern.moneyTransfer.models.Enums.CurrencyEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
+import java.math.BigDecimal;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProfileUpdateRequestDTO {
-
+public class BalanceResponseDTO {
     private String email;
-    private String country;
-    private LocalDate dob;
-    private String password;
-
+    private BigDecimal balance;
+    private CurrencyEnum currencyType;
 }

@@ -1,11 +1,13 @@
 package com.aman.intern.moneyTransfer.services;
 
 import com.aman.intern.moneyTransfer.models.DTO.RegisterRequestDTO;
+import com.aman.intern.moneyTransfer.models.entities.Account;
 import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.reposatories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Service
@@ -38,6 +40,12 @@ public class AuthService {
         user.setDob(dto.getDob());
         user.setPassword(PASSWORDENCODER.encode(dto.getPassword()));
         user.setCreatedAt(LocalDateTime.now());
+
+        Account account = new Account();
+        account.setBalance(BigDecimal.ZERO);
+
+        account.setUser(user);
+        user.setAccount(account);
 
         return USERREPOSITORY.save(user);
     }

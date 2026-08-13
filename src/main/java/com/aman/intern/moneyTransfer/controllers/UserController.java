@@ -24,13 +24,8 @@ public class UserController {
             @RequestBody ProfileUpdateRequestDTO request,
             @AuthenticationPrincipal UserDetails userDetails) {
 
-        String email = userDetails.getUsername();
-
-        User updatedUser =
-                USERSERVICE.updateProfile(email, request);
-
         return ResponseEntity.ok(
-                new UserResponseDTO(updatedUser)
+                new UserResponseDTO(USERSERVICE.updateProfile(userDetails.getUsername(), request))
         );
     }
 
