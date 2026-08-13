@@ -6,6 +6,8 @@ import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.reposatories.AccountRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AccountService {
     private final AccountRepository ACCOUNTREPOSITORY;
@@ -14,17 +16,13 @@ public class AccountService {
         this.ACCOUNTREPOSITORY = accountRepository;
     }
 
-    public Account findByAccountNumber(Long accountNumber) {
-        return ACCOUNTREPOSITORY.findByAccountNumber(accountNumber);
-    }
-
     public BalanceResponseDTO getBalance(User user) {
 //         get user account using get method
-         Account account = user.getAccount();
+         List<Account> account = user.getAccount();
         return new BalanceResponseDTO(
         user.getEmail(),
-        account.getBalance(),
-        account.getCurrency());
+        account.getFirst().getBalance(),
+        account.getFirst().getCurrency());
     }
 
 

@@ -1,6 +1,7 @@
 package com.aman.intern.moneyTransfer.models.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -40,7 +41,7 @@ public class User {
     private String country;
 
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
-    private Account account;
+    private List<Account> account;
 
 
 }

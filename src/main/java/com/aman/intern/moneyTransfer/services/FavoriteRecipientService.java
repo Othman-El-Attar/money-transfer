@@ -6,12 +6,8 @@ import com.aman.intern.moneyTransfer.models.entities.FavoriteRecipient;
 import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.reposatories.FavoriteRecipientRepository;
 import com.aman.intern.moneyTransfer.reposatories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;

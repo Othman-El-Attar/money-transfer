@@ -1,7 +1,6 @@
 package com.aman.intern.moneyTransfer.controllers;
 
 import com.aman.intern.moneyTransfer.models.DTO.BalanceResponseDTO;
-import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.services.AccountService;
 import com.aman.intern.moneyTransfer.services.UserService;
 import org.springframework.http.ResponseEntity;

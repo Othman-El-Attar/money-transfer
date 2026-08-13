@@ -11,7 +11,8 @@ import java.sql.Timestamp;
 
 @Entity
 @Table(name = "favorite_recipient",
-        uniqueConstraints = @UniqueConstraint(columnNames = {"userId", "recipientAccountId"}))@Getter
+        uniqueConstraints = @UniqueConstraint(columnNames = {"userId", "recipientAccountId"}))
+@Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,9 +25,10 @@ public class FavoriteRecipient {
     @Column(name = "id")
 
     private long id;
-    @Column(name = "user_id")
-    private long userId;
-    @Column(name = "recipient_account_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+    @Column(name = "recipient_account_id", nullable = false)
     private long recipientAccountId;
     @Column(name = "nick_name")
     private String nickName;

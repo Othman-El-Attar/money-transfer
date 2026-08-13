@@ -22,7 +22,7 @@ public class Account {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "account_number")
+    @Column( name = "account_number", nullable = false, unique = true)
     private long accountNumber;
     @Column(name = "balance")
 
@@ -44,7 +44,7 @@ public class Account {
     private Long version;
 
     @OneToOne
-    @JoinColumn(name = "user_id",nullable = false, unique = true)
+    @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
 }

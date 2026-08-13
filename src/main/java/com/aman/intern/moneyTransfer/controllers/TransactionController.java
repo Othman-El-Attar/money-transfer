@@ -2,9 +2,7 @@ package com.aman.intern.moneyTransfer.controllers;
 
 import com.aman.intern.moneyTransfer.models.DTO.TransferRequestDTO;
 import com.aman.intern.moneyTransfer.models.DTO.TransferResponseDTO;
-import com.aman.intern.moneyTransfer.models.entities.Account;
 import com.aman.intern.moneyTransfer.models.entities.Transaction;
-import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.services.TransactionService;
 import com.aman.intern.moneyTransfer.services.UserService;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,7 +33,7 @@ public class TransactionController {
             @AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(
                 TRANSACTIONSERVICE.getAccountTransactions(
-                        USERSERVICE.findByEmail(userDetails.getUsername()).getAccount()));
+                        USERSERVICE.findByEmail(userDetails.getUsername()).getAccount().getFirst()));
     }
 
     @PostMapping("/transfer")

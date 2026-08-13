@@ -58,7 +58,7 @@ public class TransactionService {
             transferFailureReason = TransferFailureReason.INVALID_AMOUNT;
             return StatusEnum.FAILED;
         }
-        if (senderUser.get().getAccount().getBalance().compareTo(amount) < 0) {
+        if (senderUser.get().getAccount().getFirst().getBalance().compareTo(amount) < 0) {
             transferFailureReason = TransferFailureReason.INSUFFICIENT_BALANCE;
             return StatusEnum.FAILED;
         }
@@ -67,8 +67,8 @@ public class TransactionService {
 
 
         transaction.setAmount(amount);
-        transaction.setReceiverAccountId(recipientUser.get().getAccount().getId());
-        transaction.setSenderAccountId(senderUser.get().getAccount().getId());
+        transaction.setReceiverAccountId(recipientUser.get().getAccount().getFirst().getId());
+        transaction.setSenderAccountId(senderUser.get().getAccount().getFirst().getId());
         transaction.setTransferType(transferRequestDTO.getTransferType());
         transaction.setTransactionStatus(StatusEnum.PENDING);
 
@@ -76,13 +76,13 @@ public class TransactionService {
         User sender = senderUser.get();
         User recipient = recipientUser.get();
         BigDecimal newSenderBalance =
-                sender.getAccount().getBalance().subtract(amount);
+                sender.getAccount().getFirst().getBalance().subtract(amount);
 
         BigDecimal newRecipientBalance =
-                recipient.getAccount().getBalance().add(amount);
+                recipient.getAccount().getFirst().getBalance().add(amount);
 
-        sender.getAccount().setBalance(newSenderBalance);
-        recipient.getAccount().setBalance(newRecipientBalance);
+        sender.getAccount().getFirst().setBalance(newSenderBalance);
+        recipient.getAccount().getFirst().setBalance(newRecipientBalance);
 
         // make transaction to save
 

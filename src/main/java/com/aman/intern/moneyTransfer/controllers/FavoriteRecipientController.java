@@ -1,10 +1,7 @@
 package com.aman.intern.moneyTransfer.controllers;
 
 import com.aman.intern.moneyTransfer.models.DTO.FavoriteRecipientDTO;
-import com.aman.intern.moneyTransfer.services.AccountService;
 import com.aman.intern.moneyTransfer.services.FavoriteRecipientService;
-import com.aman.intern.moneyTransfer.services.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;

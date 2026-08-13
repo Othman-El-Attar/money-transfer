@@ -4,7 +4,6 @@ import com.aman.intern.moneyTransfer.models.DTO.LoginRequestDTO;
 import com.aman.intern.moneyTransfer.models.DTO.LoginResponseDTO;
 import com.aman.intern.moneyTransfer.models.DTO.RegisterRequestDTO;
 import com.aman.intern.moneyTransfer.models.DTO.UserResponseDTO;
-import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.services.AuthService;
 import com.aman.intern.moneyTransfer.services.JwtService;
 import org.springframework.http.HttpStatus;
