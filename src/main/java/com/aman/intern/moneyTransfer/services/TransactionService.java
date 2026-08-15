@@ -30,8 +30,9 @@ public class TransactionService {
 
     public List<Transaction> getAccountTransactions(Account account) {
         return TRANSACTOINREPOSITORY.findByReceiverAccountIdOrSenderAccountId(
-                account.getAccountNumber(),
-                account.getAccountNumber());
+                account.getId(),
+                account.getId()
+        );
     }
 
     public TransferResponseDTO Transfer(String senderEmail, TransferRequestDTO transferRequestDTO) {
@@ -58,7 +59,7 @@ public class TransactionService {
             transferFailureReason = TransferFailureReason.INVALID_AMOUNT;
             return StatusEnum.FAILED;
         }
-        if (senderUser.get().getAccount().getFirst().getBalance().compareTo(amount) < 0) {
+        if (senderUser.get().getAccounts().getFirst().getBalance().compareTo(amount) < 0) {
             transferFailureReason = TransferFailureReason.INSUFFICIENT_BALANCE;
             return StatusEnum.FAILED;
         }
@@ -67,8 +68,8 @@ public class TransactionService {
 
 
         transaction.setAmount(amount);
-        transaction.setReceiverAccountId(recipientUser.get().getAccount().getFirst().getId());
-        transaction.setSenderAccountId(senderUser.get().getAccount().getFirst().getId());
+        transaction.setReceiverAccountId(recipientUser.get().getAccounts().getFirst().getId());
+        transaction.setSenderAccountId(senderUser.get().getAccounts().getFirst().getId());
         transaction.setTransferType(transferRequestDTO.getTransferType());
         transaction.setTransactionStatus(StatusEnum.PENDING);
 
@@ -76,13 +77,13 @@ public class TransactionService {
         User sender = senderUser.get();
         User recipient = recipientUser.get();
         BigDecimal newSenderBalance =
-                sender.getAccount().getFirst().getBalance().subtract(amount);
+                sender.getAccounts().getFirst().getBalance().subtract(amount);
 
         BigDecimal newRecipientBalance =
-                recipient.getAccount().getFirst().getBalance().add(amount);
+                recipient.getAccounts().getFirst().getBalance().add(amount);
 
-        sender.getAccount().getFirst().setBalance(newSenderBalance);
-        recipient.getAccount().getFirst().setBalance(newRecipientBalance);
+        sender.getAccounts().getFirst().setBalance(newSenderBalance);
+        recipient.getAccounts().getFirst().setBalance(newRecipientBalance);
 
         // make transaction to save
 

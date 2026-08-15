@@ -1,6 +1,7 @@
 package com.aman.intern.moneyTransfer.models.entities;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -40,8 +41,9 @@ public class User {
     @Column(name = "country")
     private String country;
 
-    @OneToOne(mappedBy = "user",cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Account> account;
-
+    @OneToMany(mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true)
+    private List<Account> accounts = new ArrayList<>();
 
 }

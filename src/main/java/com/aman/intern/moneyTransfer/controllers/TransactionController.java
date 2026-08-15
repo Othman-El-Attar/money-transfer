@@ -33,7 +33,7 @@ public class TransactionController {
             @AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(
                 TRANSACTIONSERVICE.getAccountTransactions(
-                        USERSERVICE.findByEmail(userDetails.getUsername()).getAccount().getFirst()));
+                        USERSERVICE.findByEmail(userDetails.getUsername()).getAccounts().getFirst()));
     }
 
     @PostMapping("/transfer")

@@ -43,8 +43,8 @@ public class Account {
     @Column(name = "version")
     private Long version;
 
-    @OneToOne
-    @JoinColumn(name = "user_id",nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
 }

@@ -1,6 +1,7 @@
 package com.aman.intern.moneyTransfer.controllers;
 
-import com.aman.intern.moneyTransfer.models.DTO.FavoriteRecipientDTO;
+import com.aman.intern.moneyTransfer.models.DTO.FavoriteRecipientRequestDTO;
+import com.aman.intern.moneyTransfer.models.DTO.FavoriteRecipientResponseDTO;
 import com.aman.intern.moneyTransfer.services.FavoriteRecipientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -18,23 +19,27 @@ public class FavoriteRecipientController {
         FAVORITERECIPIENTSERVICE =  favoriteRecipientService;
     }
 
+
     @GetMapping("/favorites")
-    public ResponseEntity<List<FavoriteRecipientDTO>> getFavoriteRecipients(
+    public ResponseEntity<List<FavoriteRecipientResponseDTO>> getFavoriteRecipients(
             @AuthenticationPrincipal UserDetails userDetails) {
         return ResponseEntity.ok(FAVORITERECIPIENTSERVICE.getFavoriteRecipients(userDetails));
     }
 
+
     @PostMapping("/favorites")
-    public ResponseEntity<FavoriteRecipientDTO> addFavoriteRecipients(
+    public ResponseEntity<FavoriteRecipientResponseDTO> addFavoriteRecipients(
             @AuthenticationPrincipal UserDetails userDetails,
-            FavoriteRecipientDTO favoriteRecipientDTO){
+            @RequestBody FavoriteRecipientRequestDTO favoriteRecipientRequestDTO){
 
         return  ResponseEntity.ok(FAVORITERECIPIENTSERVICE.
-                createFavoriteRecipient(userDetails,favoriteRecipientDTO));
+                createFavoriteRecipient(userDetails,favoriteRecipientRequestDTO));
 
     }
+
+
     @DeleteMapping("/favorites/{id}")
-    public ResponseEntity<FavoriteRecipientDTO> DeleteFavoriteRecipient(
+    public ResponseEntity<FavoriteRecipientResponseDTO> DeleteFavoriteRecipient(
             @AuthenticationPrincipal UserDetails userDetails,
             @PathVariable Long id
     ){

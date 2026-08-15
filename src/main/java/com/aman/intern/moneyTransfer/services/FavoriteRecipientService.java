@@ -1,7 +1,8 @@
 package com.aman.intern.moneyTransfer.services;
 
 import com.aman.intern.moneyTransfer.Mappers.FavoriteRecipientMapper;
-import com.aman.intern.moneyTransfer.models.DTO.FavoriteRecipientDTO;
+import com.aman.intern.moneyTransfer.models.DTO.FavoriteRecipientRequestDTO;
+import com.aman.intern.moneyTransfer.models.DTO.FavoriteRecipientResponseDTO;
 import com.aman.intern.moneyTransfer.models.entities.FavoriteRecipient;
 import com.aman.intern.moneyTransfer.models.entities.User;
 import com.aman.intern.moneyTransfer.reposatories.FavoriteRecipientRepository;
@@ -26,7 +27,7 @@ public class FavoriteRecipientService {
         this.MAPPER = favoriteRecipientMapper;
     }
 
-    public List<FavoriteRecipientDTO> getFavoriteRecipients(
+    public List<FavoriteRecipientResponseDTO> getFavoriteRecipients(
              UserDetails userDetails) {
         Optional<User> user = USERREPOSITORY.findByEmail(userDetails.getUsername());
         if (user.isEmpty()) throw new IllegalArgumentException("user not found");
@@ -39,22 +40,22 @@ public class FavoriteRecipientService {
                 .toList();
     }
 
-    public FavoriteRecipientDTO createFavoriteRecipient(
-             UserDetails userDetails
-            , FavoriteRecipientDTO favoriteRecipientDTO){
+    public FavoriteRecipientResponseDTO createFavoriteRecipient(
+            UserDetails userDetails
+            , FavoriteRecipientRequestDTO favoriteRecipientRequestDTO){
         Optional<User> user = USERREPOSITORY.findByEmail(userDetails.getUsername());
         if(user.isEmpty()) throw new IllegalArgumentException("user not found");
         FavoriteRecipient favoriteRecipient = new FavoriteRecipient();
-        favoriteRecipient.setUserId(user.get().getId());
-        favoriteRecipient.setRecipientAccountId(favoriteRecipientDTO.getRecipientAccountId());
-        favoriteRecipient.setNickName(favoriteRecipientDTO.getNickName());
+        favoriteRecipient.setUser(user.get());
+        favoriteRecipient.setRecipientAccountId(favoriteRecipientRequestDTO.getRecipientAccountId());
+        favoriteRecipient.setNickName(favoriteRecipientRequestDTO.getNickName());
 
         FAVORITERECIPIENTREPOSITORY.save(favoriteRecipient);
 
         return MAPPER.FavoriteRecipientToDTO(favoriteRecipient );
 
     }
-    public FavoriteRecipientDTO DeleteFavoriteRecipient(
+    public FavoriteRecipientResponseDTO DeleteFavoriteRecipient(
              UserDetails userDetails
             ,Long id){
 
@@ -69,14 +70,14 @@ public class FavoriteRecipientService {
                                         "Favorite recipient not found"
                                 ));
 
-        if (favoriteRecipient.getUserId() != user.getId()) {
+        if (favoriteRecipient.getUser().getId() != user.getId()) {
             throw new IllegalArgumentException(
                     "You cannot delete this favorite recipient"
             );
         }
 
 
-        FavoriteRecipientDTO favoriteRecipientDTO = MAPPER.FavoriteRecipientToDTO(favoriteRecipient);
+        FavoriteRecipientResponseDTO favoriteRecipientDTO = MAPPER.FavoriteRecipientToDTO(favoriteRecipient);
         FAVORITERECIPIENTREPOSITORY.delete(favoriteRecipient);
 
         return favoriteRecipientDTO;

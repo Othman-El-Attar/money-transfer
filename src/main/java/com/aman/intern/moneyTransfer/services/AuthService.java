@@ -3,21 +3,26 @@ package com.aman.intern.moneyTransfer.services;
 import com.aman.intern.moneyTransfer.models.DTO.RegisterRequestDTO;
 import com.aman.intern.moneyTransfer.models.entities.Account;
 import com.aman.intern.moneyTransfer.models.entities.User;
+import com.aman.intern.moneyTransfer.reposatories.AccountRepository;
 import com.aman.intern.moneyTransfer.reposatories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Random;
 
 @Service
 public class AuthService {
     private final UserRepository USERREPOSITORY;
     private final PasswordEncoder PASSWORDENCODER;
+    private final AccountRepository ACCOUNTREPOSITORY;
 
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordencoder) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordencoder,AccountRepository accountRepository) {
         this.USERREPOSITORY = userRepository;
-        PASSWORDENCODER = passwordencoder;
+        this.PASSWORDENCODER = passwordencoder;
+        this.ACCOUNTREPOSITORY = accountRepository;
     }
 
     public User register(RegisterRequestDTO dto) {
@@ -42,10 +47,12 @@ public class AuthService {
         user.setCreatedAt(LocalDateTime.now());
 
         Account account = new Account();
-        account.setBalance(BigDecimal.ZERO);
 
+        account.setAccountNumber(generateAccountNumber());
+        account.setBalance(BigDecimal.ZERO);
         account.setUser(user);
-        user.setAccount(account);
+
+        user.getAccounts().add(account);
 
         return USERREPOSITORY.save(user);
     }
@@ -59,6 +66,19 @@ public class AuthService {
                 password.matches(".*[A-Z].*") &&
                 password.matches(".*[a-z].*") &&
                 password.matches(".*[$%^].*");
+    }
+
+    private long generateAccountNumber() {
+
+        Random random = new Random();
+
+        long accountNumber;
+
+        do {
+            accountNumber = 1_000_000_000L + random.nextLong(9_000_000_000L);
+        } while (ACCOUNTREPOSITORY.existsByAccountNumber(accountNumber));
+
+        return accountNumber;
     }
 
 }

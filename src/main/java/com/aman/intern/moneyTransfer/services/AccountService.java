@@ -18,7 +18,7 @@ public class AccountService {
 
     public BalanceResponseDTO getBalance(User user) {
 //         get user account using get method
-         List<Account> account = user.getAccount();
+         List<Account> account = user.getAccounts();
         return new BalanceResponseDTO(
         user.getEmail(),
         account.getFirst().getBalance(),

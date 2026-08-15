@@ -1,14 +1,15 @@
 package com.aman.intern.moneyTransfer.models.DTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 @Getter
 @Setter
-public class FavoriteRecipientDTO {
-
-    private long userId;
+@NoArgsConstructor
+@AllArgsConstructor
+public class FavoriteRecipientRequestDTO {
     private long recipientAccountId;
     private String nickName;
 }
