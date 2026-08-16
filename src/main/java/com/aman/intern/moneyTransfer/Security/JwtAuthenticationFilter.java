@@ -1,6 +1,6 @@
 package com.aman.intern.moneyTransfer.Security;
 
-import com.aman.intern.moneyTransfer.services.JwtService;
+import com.aman.intern.moneyTransfer.Services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

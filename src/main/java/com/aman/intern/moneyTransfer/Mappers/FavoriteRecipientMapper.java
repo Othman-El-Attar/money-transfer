@@ -1,7 +1,7 @@
 package com.aman.intern.moneyTransfer.Mappers;
 
-import com.aman.intern.moneyTransfer.models.DTO.FavoriteRecipientResponseDTO;
-import com.aman.intern.moneyTransfer.models.entities.FavoriteRecipient;
+import com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipientResponseDTO;
+import com.aman.intern.moneyTransfer.Models.Entities.FavoriteRecipient;
 import org.springframework.stereotype.Component;
 
 @Component
