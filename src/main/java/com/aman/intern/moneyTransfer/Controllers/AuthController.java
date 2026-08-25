@@ -1,9 +1,9 @@
 package com.aman.intern.moneyTransfer.Controllers;
 
-import com.aman.intern.moneyTransfer.Models.DTO.LoginRequestDTO;
-import com.aman.intern.moneyTransfer.Models.DTO.LoginResponseDTO;
-import com.aman.intern.moneyTransfer.Models.DTO.RegisterRequestDTO;
-import com.aman.intern.moneyTransfer.Models.DTO.UserResponseDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.Auth.LoginRequestDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.Auth.LoginResponseDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.Auth.RegisterRequestDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.Auth.RegisterResponseDTO;
 import com.aman.intern.moneyTransfer.Services.AuthService;
 import com.aman.intern.moneyTransfer.Services.JwtService;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,14 +54,20 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<UserResponseDTO> registerUser(@RequestBody RegisterRequestDTO registerRequestDTO) {
+    public ResponseEntity<RegisterResponseDTO> registerUser(@RequestBody RegisterRequestDTO registerRequestDTO) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(new UserResponseDTO(AUTHSERVICE.register(registerRequestDTO)));
+                .body(new RegisterResponseDTO(AUTHSERVICE.register(registerRequestDTO)));
     }
 
 
     @PostMapping("/logout")
-    public ResponseEntity<Void> logout() {
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> logout(
+            @AuthenticationPrincipal UserDetails userDetails) {
+
+        String email = userDetails.getUsername();
+
+        return ResponseEntity.ok(
+                "User " + email + " logged out successfully"
+        );
     }
 }

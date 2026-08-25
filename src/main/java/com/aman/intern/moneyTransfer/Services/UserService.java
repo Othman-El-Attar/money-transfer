@@ -1,6 +1,6 @@
 package com.aman.intern.moneyTransfer.Services;
 
-import com.aman.intern.moneyTransfer.Models.DTO.ProfileUpdateRequestDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.User.ProfileUpdateRequestDTO;
 import com.aman.intern.moneyTransfer.Models.Entities.User;
 import com.aman.intern.moneyTransfer.Repositories.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -65,6 +65,6 @@ public class UserService {
                 password.length() >= 6 &&
                 password.matches(".*[A-Z].*") &&
                 password.matches(".*[a-z].*") &&
-                password.matches(".*[$%^].*");
+                password.matches(".*[$@#%^].*");
     }
 }

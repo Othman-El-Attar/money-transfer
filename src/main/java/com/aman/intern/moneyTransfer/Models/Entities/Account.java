@@ -1,6 +1,7 @@
 package com.aman.intern.moneyTransfer.Models.Entities;
 
 import com.aman.intern.moneyTransfer.Models.Enums.CurrencyEnum;
+import com.aman.intern.moneyTransfer.Repositories.AccountRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.util.Random;
 
 @Entity
 @Table(name = "Account")
@@ -17,13 +19,14 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    private Long id;
 
     @Column( name = "account_number", nullable = false, unique = true)
-    private long accountNumber;
+    private Long accountNumber;
 
     @Column(name = "balance")
     private BigDecimal balance;
@@ -45,6 +48,8 @@ public class Account {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
+
 
 }
 

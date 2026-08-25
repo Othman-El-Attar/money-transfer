@@ -1,4 +1,4 @@
-package com.aman.intern.moneyTransfer.Models.DTO;
+package com.aman.intern.moneyTransfer.Models.DTO.Transfer;
 
 import com.aman.intern.moneyTransfer.Models.Enums.StatusEnum;
 import com.aman.intern.moneyTransfer.Models.Enums.TransferFailureReason;

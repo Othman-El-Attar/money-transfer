@@ -1,6 +1,6 @@
 package com.aman.intern.moneyTransfer.Services;
 
-import com.aman.intern.moneyTransfer.Models.DTO.RegisterRequestDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.Auth.RegisterRequestDTO;
 import com.aman.intern.moneyTransfer.Models.Entities.Account;
 import com.aman.intern.moneyTransfer.Models.Entities.User;
 import com.aman.intern.moneyTransfer.Repositories.AccountRepository;
@@ -66,7 +66,7 @@ public class AuthService {
                 password.length() >= 6 &&
                 password.matches(".*[A-Z].*") &&
                 password.matches(".*[a-z].*") &&
-                password.matches(".*[$%^].*");
+                password.matches(".*[$%#@^].*");
     }
 
     private long generateAccountNumber() {

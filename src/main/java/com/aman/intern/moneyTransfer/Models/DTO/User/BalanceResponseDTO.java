@@ -1,4 +1,4 @@
-package com.aman.intern.moneyTransfer.Models.DTO;
+package com.aman.intern.moneyTransfer.Models.DTO.User;
 
 import com.aman.intern.moneyTransfer.Models.Enums.CurrencyEnum;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.aman.intern.moneyTransfer.Models.DTO;
+package com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipient;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

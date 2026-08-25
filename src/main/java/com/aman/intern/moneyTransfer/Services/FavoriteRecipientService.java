@@ -1,8 +1,8 @@
 package com.aman.intern.moneyTransfer.Services;
 
 import com.aman.intern.moneyTransfer.Mappers.FavoriteRecipientMapper;
-import com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipientRequestDTO;
-import com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipientResponseDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipient.FavoriteRecipientRequestDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipient.FavoriteRecipientResponseDTO;
 import com.aman.intern.moneyTransfer.Models.Entities.FavoriteRecipient;
 import com.aman.intern.moneyTransfer.Models.Entities.User;
 import com.aman.intern.moneyTransfer.Repositories.FavoriteRecipientRepository;

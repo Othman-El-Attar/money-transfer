@@ -25,11 +25,14 @@ public class Transaction {
     @Column(name = "id")
     private long id;
 
-    @Column(name = "sender_account_id",nullable = false)
-        private long senderAccountId;
 
-    @Column(name = "receiver_account_id",nullable = false)
-    private long receiverAccountId;
+    @ManyToOne
+    @JoinColumn(name = "sender_account_id",nullable = false)
+    private Account senderAccount;
+
+    @ManyToOne
+    @JoinColumn(name = "receiver_account_id",nullable = false)
+    private Account receiverAccount;
 
     @Column(name = "amount",nullable = false)
     private BigDecimal amount;

@@ -1,7 +1,7 @@
 package com.aman.intern.moneyTransfer.Controllers;
 
-import com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipientRequestDTO;
-import com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipientResponseDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipient.FavoriteRecipientRequestDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.FavoriteRecipient.FavoriteRecipientResponseDTO;
 import com.aman.intern.moneyTransfer.Services.FavoriteRecipientService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

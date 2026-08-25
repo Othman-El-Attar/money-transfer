@@ -1,10 +1,14 @@
 package com.aman.intern.moneyTransfer.Controllers;
 
-import com.aman.intern.moneyTransfer.Models.DTO.TransferRequestDTO;
-import com.aman.intern.moneyTransfer.Models.DTO.TransferResponseDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.Transfer.TransactionResponseDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.Transfer.TransferRequestAbstractDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.Transfer.TransferResponseDTO;
 import com.aman.intern.moneyTransfer.Models.Entities.Transaction;
+import com.aman.intern.moneyTransfer.Models.Entities.User;
 import com.aman.intern.moneyTransfer.Services.TransactionService;
 import com.aman.intern.moneyTransfer.Services.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,7 +23,6 @@ import java.util.List;
 public class TransactionController {
 
     private final TransactionService TRANSACTIONSERVICE;
-
     private final UserService USERSERVICE;
 
     public TransactionController(TransactionService transactionService, UserService userService) {
@@ -27,22 +30,24 @@ public class TransactionController {
         this.USERSERVICE = userService;
     }
 
-
     @GetMapping("/transactions")
-    public ResponseEntity<List<Transaction>> getTransactions(
-            @AuthenticationPrincipal UserDetails userDetails) {
+    public ResponseEntity<Page<TransactionResponseDTO>> getTransactions(
+            @AuthenticationPrincipal UserDetails userDetails,
+            Pageable pageable) {
+
+        User user = USERSERVICE.findByEmail(userDetails.getUsername());
+
         return ResponseEntity.ok(
-                TRANSACTIONSERVICE.getAccountTransactions(
-                        USERSERVICE.findByEmail(userDetails.getUsername()).getAccounts().getFirst()));
+                TRANSACTIONSERVICE.getUserTransactions(user, pageable)
+        );
     }
 
     @PostMapping("/transfer")
     public ResponseEntity<TransferResponseDTO> transferTransaction(
             @AuthenticationPrincipal UserDetails userDetails,
-            @RequestBody TransferRequestDTO transferRequestDTO
+            @RequestBody TransferRequestAbstractDTO transferRequestAbstractDTO
     ){
-
         return ResponseEntity.ok(
-                TRANSACTIONSERVICE.Transfer(userDetails.getUsername() ,transferRequestDTO));
+                TRANSACTIONSERVICE.transfer(userDetails.getUsername(), transferRequestAbstractDTO));
     }
 }

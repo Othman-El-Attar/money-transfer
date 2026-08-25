@@ -1,4 +1,4 @@
-package com.aman.intern.moneyTransfer.Models.DTO;
+package com.aman.intern.moneyTransfer.Models.DTO.Auth;
 
 import com.aman.intern.moneyTransfer.Models.Entities.User;
 import lombok.Getter;
@@ -8,7 +8,7 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-public class UserResponseDTO {
+public class RegisterResponseDTO {
 
 
     private final long id;
@@ -17,7 +17,7 @@ public class UserResponseDTO {
     private final String country;
     private final LocalDate dob;
 
-    public UserResponseDTO(User user) {
+    public RegisterResponseDTO(User user) {
         this.id = user.getId();
         this.name = user.getName();
         this.email = user.getEmail();

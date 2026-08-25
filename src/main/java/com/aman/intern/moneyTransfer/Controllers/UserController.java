@@ -1,7 +1,7 @@
 package com.aman.intern.moneyTransfer.Controllers;
 
-import com.aman.intern.moneyTransfer.Models.DTO.ProfileUpdateRequestDTO;
-import com.aman.intern.moneyTransfer.Models.DTO.UserResponseDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.User.ProfileUpdateRequestDTO;
+import com.aman.intern.moneyTransfer.Models.DTO.Auth.RegisterResponseDTO;
 import com.aman.intern.moneyTransfer.Services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -21,12 +21,12 @@ public class UserController {
 
 
     @PutMapping("/profile")
-    public ResponseEntity<UserResponseDTO> updateProfile(
+    public ResponseEntity<RegisterResponseDTO> updateProfile(
             @RequestBody ProfileUpdateRequestDTO request,
             @AuthenticationPrincipal UserDetails userDetails) {
 
         return ResponseEntity.ok(
-                new UserResponseDTO(USERSERVICE.updateProfile(userDetails.getUsername(), request))
+                new RegisterResponseDTO(USERSERVICE.updateProfile(userDetails.getUsername(), request))
         );
     }
 
