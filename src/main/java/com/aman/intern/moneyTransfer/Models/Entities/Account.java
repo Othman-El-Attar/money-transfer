@@ -1,7 +1,6 @@
 package com.aman.intern.moneyTransfer.Models.Entities;
 
 import com.aman.intern.moneyTransfer.Models.Enums.CurrencyEnum;
-import com.aman.intern.moneyTransfer.Repositories.AccountRepository;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Random;
 
 @Entity
 @Table(name = "Account")
