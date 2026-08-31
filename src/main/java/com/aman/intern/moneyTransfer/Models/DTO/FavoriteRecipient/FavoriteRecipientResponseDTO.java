@@ -8,6 +8,7 @@ import lombok.Setter;
 @Setter
 public class FavoriteRecipientResponseDTO {
 
+    private long id;
     private long userId;
     private long recipientAccountId;
     private String nickName;

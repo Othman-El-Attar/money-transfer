@@ -10,6 +10,7 @@ public class FavoriteRecipientMapper {
 
         FavoriteRecipientResponseDTO dto = new FavoriteRecipientResponseDTO();
 
+        dto.setId(favoriteRecipient.getId());
         dto.setNickName(favoriteRecipient.getNickName());
         dto.setRecipientAccountId(favoriteRecipient.getRecipientAccountId());
         dto.setUserId(favoriteRecipient.getUser().getId());
