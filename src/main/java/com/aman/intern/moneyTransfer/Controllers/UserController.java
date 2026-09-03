@@ -3,7 +3,6 @@ package com.aman.intern.moneyTransfer.Controllers;
 import com.aman.intern.moneyTransfer.Models.DTO.User.ProfileUpdateRequestDTO;
 import com.aman.intern.moneyTransfer.Models.DTO.User.ProfileUpdateResponseDTO;
 import com.aman.intern.moneyTransfer.Models.DTO.Auth.RegisterResponseDTO;
-import com.aman.intern.moneyTransfer.Services.JwtService;
 import com.aman.intern.moneyTransfer.Services.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
