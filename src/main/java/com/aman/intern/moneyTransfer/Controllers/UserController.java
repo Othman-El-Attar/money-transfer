@@ -18,7 +18,7 @@ public class UserController {
 
     private final UserService USERSERVICE;
 
-    public UserController(UserService userService, JwtService jwtService) {
+    public UserController(UserService userService) {
         USERSERVICE = userService;
     }
 
