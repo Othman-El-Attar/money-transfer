@@ -35,9 +35,7 @@ public class AccountController {
         );
     }
 
-    /// Looks up another user's accounts by email (and optionally narrows to
-    /// one specific account number), so they can be picked as a favorite
-    /// recipient without needing to already know their account id.
+
     @GetMapping("/accounts/lookup")
     public ResponseEntity<List<RecipientAccountDTO>> lookupRecipientAccounts(
             @RequestParam String email,
